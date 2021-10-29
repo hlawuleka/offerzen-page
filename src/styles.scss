@@ -1,0 +1,253 @@
+
+@font-face {
+  font-family:"Proxima";
+  src: url("https://js.intercomcdn.com/fonts/proximanova-regular.a7942249.woff") format("woff");
+}
+
+$transition-fn: cubic-bezier(0.98, 0.48, 0.46, 0.81);
+// To be honest, I am not an animation specialist, but hey
+// Try hit empty result on the search to see the below animation
+@-webkit-keyframes movingImage {
+  0% {
+    opacity: .5;
+    position: relative;
+    left: -100%;
+    transform: rotate(25deg);
+  }
+
+  70% {
+    opacity: .35;
+    position: relative;
+    left: 0%;
+    transform: rotate(-45deg);
+  }
+
+  100% {
+    opacity: .4;
+    left: 100%;
+  }
+}
+/* some resets */
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+.empty-results {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  background: #fff;
+  border: 1px dashed #EEF3F6;
+  border-radius: 3px;
+  margin: 20px auto;
+  padding: 10px 0;
+  width: 90%;
+  position: relative;
+  transition: display $transition-fn 3s;
+  img {
+    animation: movingImage 2.5s $transition-fn infinite;
+    margin: 20px auto;
+    width: 45px;
+  }
+}
+
+.App {
+  background: #EEF3F6;
+  font-family: 'Proxima', sans-serif;
+  text-align: center;
+  max-width: 1200px;
+  margin: auto auto;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.offerzen-header {
+  width: 100%;
+  height: 60px;
+  left: 0px;
+  top: 0px;
+  background: #343951;
+  display: flex;
+  align-items: center;
+  
+  .header-logo {
+    img {
+      width: 100px;
+      height: 20px;
+    }
+    padding: 0 35px;
+
+    @media screen and (min-width: 980px) {
+      padding: 0 124px;
+    }
+  }
+}
+
+.filters-section {
+  align-items: center;
+  background-color: white;
+  color: #7C7C80;
+  display: flex;
+  flex-flow: row;
+  font-size: 14px;
+  height: 60px;
+  justify-content: space-between;
+  padding: 0 34px;
+
+  @media screen and (min-width: 980px) {
+    padding: 40px 124px;
+  }
+
+  input {
+    border: 1px solid #E4EBEF;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 13px 14px;
+    outline: 0;
+
+    // use background image to place search item inside text input
+  }
+
+  .archive {
+    align-items: center;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+
+    .toggle-box {
+      align-items: center;
+      color: #5EA5EE;
+      cursor: pointer;
+      display: flex;
+      flex-align: flex-end;
+      border: 1px solid #E4F0FC;
+      border-radius: 2px;
+      height: 20px;
+      justify-content: center;
+      width: 20px;
+    }
+  }
+}
+
+.table {
+  $table-template--columns: 1.5fr 1fr 1.2fr 1fr 1fr 1fr;
+  margin: 40px 30px;
+
+  @media screen and (min-width: 980px) {
+    margin: 40px 124px;
+  }
+
+  .total-interviews {
+    color: #7C7C80;
+    display: flex;
+    font-size: 12px;
+    justify-content: flex-end;
+    padding: 0;
+    margin: 5px 0;
+  }  
+
+  .table-content {
+    background: #FFFFFF;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 3px 2px 2px 2px;
+  }
+
+  .table-header {
+    display: none;
+    font-size: 12px;
+    text-align: left;
+    height: 35px;
+    background: #F9FAFB;
+
+    div {
+     line-height: 35px;
+    }
+
+    @media screen and (min-width: 980px) {
+      align-items: center;
+      display: grid;
+      grid-template-columns: $table-template--columns;
+      padding: 0 12px;
+    }
+  }
+
+  .person-details {
+    color: #7C7C80;
+    display: flex;
+    font-size: 12px;
+    flex-flow: column;
+    text-align: left;
+    padding: 15px;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid #F9FAFB;
+    }
+    
+    > div {
+      margin: 2px 0;
+    }
+
+    @media screen and (min-width: 980px) {
+      align-items: center;      
+      display: grid;
+      grid-template-columns: $table-template--columns;
+      height: 48px;
+      line-height: 48px;
+      padding: 0 12px;
+
+      > div {
+        margin: 0;
+      }
+       
+      &:not(:last-of-type) {
+        border-bottom: 0;
+      }
+    }
+
+    &.archived {
+      background: #F9FAFB;
+    }
+
+    .details-data {
+      align-items: center;
+      line-height: initial;
+    }
+
+    .details-name {
+      align-items: center;
+      display: flex;
+      img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+      }
+    }
+
+    .details-date {
+      opacity: .5;
+      font-size: 10px;
+      font-weight: 300;
+      margin-left: 8px;
+    }
+
+    .details-unread {
+      display: inline-block;
+      color: #34B96F;
+      margin: 0 4px 0 0;
+      height: 8px;
+      line-height: 8px;
+      width: 8px;
+      border-radius: 50%;
+      background: #34B96F;
+    }
+
+    .details-archived {
+      cursor: pointer;
+      color: #5EA5EE;
+      text-align: right;
+    }
+  }
+}
