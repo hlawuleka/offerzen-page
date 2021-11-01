@@ -91,24 +91,51 @@ html {
   background-color: white;
   color: #7C7C80;
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
   font-size: 14px;
-  height: 60px;
+  height: auto;
   justify-content: space-between;
-  padding: 0 34px;
+  padding: 10px 34px;
 
-  @media screen and (min-width: 980px) {
-    padding: 40px 124px;
+  @media screen and (min-width: 380px) {
+    flex-flow: row;
+    height: 60px;
   }
 
-  input {
+  @media screen and (min-width: 980px) {
+    padding: 0 124px;
+  }
+
+  .search {
+    align-items: center;
+    display: flex;
     border: 1px solid #E4EBEF;
     box-sizing: border-box;
     border-radius: 3px;
     padding: 13px 14px;
-    outline: 0;
+    flex-flow: row;
 
-    // use background image to place search item inside text input
+    input {
+      color: rgba(0, 0, 0, .65);
+      border: 0;
+      flex: 1;
+      outline: 0;
+
+      &::-webkit-input-placeholder {
+        color: #A6ACAF;
+      }
+
+      &::-moz-input-placeholder {
+        color: #A6ACAF;
+      }
+    }
+
+    .search-icon {
+      color: #DAE0E4;
+      flex: 1;
+      width: 16px;
+      height: 16px;
+    }
   }
 
   .archive {
@@ -122,12 +149,23 @@ html {
       color: #5EA5EE;
       cursor: pointer;
       display: flex;
-      flex-align: flex-end;
       border: 1px solid #E4F0FC;
       border-radius: 2px;
       height: 20px;
       justify-content: center;
       width: 20px;
+
+      .toggle-tick {
+        display: none;
+      }
+
+      &.is--active {
+        border-color: #5EA5EE;
+        .toggle-tick {
+          display: block;
+          fill: #5EA5EE;
+        }
+      }
     }
   }
 }
@@ -163,7 +201,25 @@ html {
     background: #F9FAFB;
 
     div {
-     line-height: 35px;
+      align-items: center;
+      display: flex;
+      line-height: 35px;
+
+      &.sort-item {
+        cursor: pointer;
+        .sort-icon {
+          width: 16px;
+          height: 16px;
+          line-height: 16px;
+          margin-left: 6px;
+        }
+
+        &.asc {
+          .sort-icon {
+            opacity: .65;
+          }
+        }
+      }
     }
 
     @media screen and (min-width: 980px) {
